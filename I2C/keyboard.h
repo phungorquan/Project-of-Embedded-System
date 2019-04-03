@@ -13,7 +13,7 @@
 #define F1		0x05
 #define F2 		0x06
 #define F3		0x04
-
+#define NewLine 0x0A
 
 void _send(uint8_t);
 void _SendString(char*);
