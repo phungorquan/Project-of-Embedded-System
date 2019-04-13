@@ -1,38 +1,21 @@
-#include "keyboard.h"
+#include "setup.h"
 
-GPIO_InitTypeDef GPIO_InitStruct; 
-USART_InitTypeDef USART_InitStructure;
-
-
-void _send(uint8_t data)
+void _SendByte(uint8_t data)
 {
- USART_SendData(USART2, data);
+  USART_SendData(USART2, data);
 	while (USART_GetFlagStatus(USART2, USART_FLAG_TXE) == RESET);
 }
 
 void _SendString(char str[])
 {
-   int i =0;
+  int i =0;
   
   while (str[i] != 0x00)
   {
-    _send(str[i]);
+    _SendByte(str[i]);
     i++;
   }
 }
-
-
-//void SetDefaultLed()
-//{
-//	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE); 
-//	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_Out_PP; 
-//	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_13;//|GPIO_Pin_1;
-//	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz; 
-//	
-//	GPIO_Init(GPIOC, &GPIO_InitStruct); 
-//	GPIO_ResetBits(GPIOC, GPIO_Pin_13);//|GPIO_Pin_1); 
-//}
-
 
 
 void NVIC_Configuration(void)
@@ -50,13 +33,11 @@ void NVIC_Configuration(void)
 
 }
 
-
 void EnableUart_2()
 {
-	
-	
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
-	
+	// Init 2 object
+	GPIO_InitTypeDef GPIO_InitStruct; 
+	USART_InitTypeDef USART_InitStructure;
 	
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA |RCC_APB2Periph_AFIO,ENABLE);
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2 ,ENABLE);
@@ -72,11 +53,6 @@ void EnableUart_2()
   GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IN_FLOATING;
   GPIO_Init(GPIOA, &GPIO_InitStruct);
         
-	// Nut nhan cho RAM
-	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_0|GPIO_Pin_1;
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IPU; 
-	GPIO_Init(GPIOA, &GPIO_InitStruct);
-	
 
 	// CONFIG USART
   USART_InitStructure.USART_BaudRate = 9600;
@@ -91,3 +67,29 @@ void EnableUart_2()
 	USART_ITConfig(USART2, USART_IT_RXNE, ENABLE);
 	USART_Cmd(USART2, ENABLE);
 }
+
+void GPIO_Setup()
+{
+	GPIO_InitTypeDef GPIO_InitStruct; 
+	
+	// Use for RAM
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA,ENABLE);
+	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_0|GPIO_Pin_1;
+	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IPU; 
+	GPIO_Init(GPIOA, &GPIO_InitStruct);
+	
+	// Default led to check ERROR , uncomment if need
+//	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC, ENABLE); 
+//	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_Out_PP; 
+//	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz; 
+//	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_13;
+//	GPIO_Init(GPIOC, &GPIO_InitStruct); 
+
+}
+
+void Delay(int time)
+{
+   int icompTime = 0;
+   for(icompTime=time*1000;icompTime!=0;icompTime--);
+}
+
