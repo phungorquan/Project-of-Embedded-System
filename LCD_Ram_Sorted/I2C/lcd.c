@@ -80,10 +80,11 @@ void LCD_Print(char data)
 
 void LCD_Print_String (char *str)
 {
-	while (*str) LCD_Print (*str++);
+	while (*str) 
+		LCD_Print (*str++);
 }
 
-void Delete_LCD(void)
+void LCD_Clear(void)
 {
 	LCD_Control_Write(0x01);
 	Delay(50);
@@ -140,7 +141,7 @@ void LCD_Control_Write(char data)
 
 void Inform_Select_Mode()
 {
-	Delete_LCD();
+	LCD_Clear();
 	Delay(100);
   LCD_SetCurSor_XY(1, 0);
 	Delay(100);

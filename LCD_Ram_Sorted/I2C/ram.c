@@ -94,10 +94,10 @@ uint8_t ReadByte(uint32_t address) {
 }
 
 
-void Transfer_An_Array(uint8_t *buf, int count) {				// Transfer an Array
-    uint8_t *p = buf;
-    uint8_t out;
-		uint8_t in;
+void Transfer_An_Array(char *buf, int count) {				// Transfer an Array
+    char *p = buf;
+    char out;
+		char in;
 	if (count == 0) return;
      SPI1->DR  = *p;
     while (--count > 0) {
@@ -111,7 +111,7 @@ void Transfer_An_Array(uint8_t *buf, int count) {				// Transfer an Array
     *p = SPI1->DR;
   }
 	
-void WriteArray(uint32_t address, uint8_t *data, uint16_t big) {
+void WriteArray(uint32_t address, char *data, uint16_t big) {
 
   GPIO_ResetBits(GPIOA, GPIO_Pin_4);                         // start new command sequence
   
@@ -124,7 +124,7 @@ void WriteArray(uint32_t address, uint8_t *data, uint16_t big) {
 	GPIO_SetBits(GPIOA, GPIO_Pin_4);                           // set SPI slave select HIGH
 }
 
-void ReadArray(uint32_t address,uint8_t *data, uint16_t big) {
+void ReadArray(uint32_t address,char *data, uint16_t big) {
   uint16_t i = 0;                           
   
 	GPIO_ResetBits(GPIOA, GPIO_Pin_4);                         // start new command sequence

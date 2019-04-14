@@ -1,6 +1,6 @@
 #include "stm32f10x.h"
 
-char Letter[] = {
+uint8_t Letter[] = {
 	
 	'/','/','/','/','/'/*F3*/,' '/*F1*/,' '/*F2*/,'/','/','/','/','/','/','/','`','/','/','/','/' /*LSHIFT*/,'/', '/'/*LCRTL*/
 	,'Q','1','/','/','/','Z','S','A','W','2','/','/','C','X','D','E','4','3','/','/'
@@ -19,5 +19,8 @@ char Letter[] = {
 #define F1		0x05
 #define F2 		0x06
 #define F3		0x04
+#define F4		0x0C
+#define F5		0x03
+#define F6		0x0B
 #define NewLine 0x0A
 

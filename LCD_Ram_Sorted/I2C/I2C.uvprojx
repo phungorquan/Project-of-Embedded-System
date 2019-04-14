@@ -427,14 +427,14 @@
               <FilePath>.\lcd.c</FilePath>
             </File>
             <File>
-              <FileName>keyboard.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\keyboard.c</FilePath>
-            </File>
-            <File>
               <FileName>ram.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\ram.c</FilePath>
+            </File>
+            <File>
+              <FileName>setup.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\setup.c</FilePath>
             </File>
           </Files>
         </Group>

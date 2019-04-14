@@ -18,3 +18,4 @@
 .\objects\setup.o: C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\StdPeriph_Driver\inc\misc.h
 .\objects\setup.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\setup.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\setup.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

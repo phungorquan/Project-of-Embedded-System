@@ -19,7 +19,7 @@ void WriteByte(uint32_t , uint8_t);
 uint8_t ReadByte(uint32_t );
 
 // Write And Read flr Sequential Mode
-void Transfer_An_Array(uint8_t *, int );
-void WriteArray(uint32_t , uint8_t *, uint16_t);
-void ReadArray(uint32_t ,uint8_t *, uint16_t );
+void Transfer_An_Array(char *, int );
+void WriteArray(uint32_t , char *, uint16_t);
+void ReadArray(uint32_t ,char *, uint16_t );
 

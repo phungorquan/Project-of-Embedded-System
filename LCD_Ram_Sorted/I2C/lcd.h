@@ -17,9 +17,9 @@ void LCD_Print(char );
 void LCD_Print_String (char*);
 
 // Clear LCD display
-void Delete_LCD(void);
+void LCD_Clear(void);
 
-// Set Cursor
+// Set Cursor , R C
 void LCD_SetCurSor_XY (int, int ); 
 
 // Support for the other LCD functions

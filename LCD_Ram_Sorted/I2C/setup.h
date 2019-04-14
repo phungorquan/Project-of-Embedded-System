@@ -1,6 +1,7 @@
 #include "stm32f10x.h"
 #include "stdbool.h"
 #include "stdio.h"
+#include "string.h"
 
 // Send UART
 void _SendByte(uint8_t);

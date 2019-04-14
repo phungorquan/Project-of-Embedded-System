@@ -19,6 +19,7 @@
 .\objects\main.o: setup.h
 .\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\main.o: keyboard.h
 .\objects\main.o: setup.h
 .\objects\main.o: ram.h
