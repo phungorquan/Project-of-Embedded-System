@@ -1,17 +1,31 @@
 #include "stm32f10x.h"
-#define PCF8574A_Address	0x7E
-#define I2C_Chanel	I2C2
+#include "setup.h"
 
-void i2c_init(void);
-void delaychung(int);
+#define LCD_I2C_Address	0x3F << 1
+#define I2C_Channel	I2C2
 
-void lcd_Write_byte(char );
-void lcd_Data_Write(char );
-void lcd_Control_Write(char );
-void lcd_init (void);
+// Init I2C
+void I2C_LCD_Init(void);
 
-void lcd_send_string (char*);
-void Delete_LCD(void);
+// Init LCD
+void LCD_Init (void);
 
-void lcd_goto_XY (int, int ); //set proper location on screen
-void Setdefaultled(void);
+// Print a byte to LCD
+void LCD_Print(char );
+
+// Print a string to LCD
+void LCD_Print_String (char*);
+
+// Clear LCD display
+void LCD_Clear(void);
+
+// Set Cursor , R C
+void LCD_SetCurSor_XY (int, int ); 
+
+// Support for the other LCD functions
+void LCD_Write_Byte(char );
+void LCD_Control_Write(char );
+
+// Informe Select Mode
+void Inform_Select_Mode(void);
+

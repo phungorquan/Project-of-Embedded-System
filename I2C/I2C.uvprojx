@@ -427,9 +427,19 @@
               <FilePath>.\lcd.c</FilePath>
             </File>
             <File>
-              <FileName>keyboard.c</FileName>
+              <FileName>ram.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\keyboard.c</FilePath>
+              <FilePath>.\ram.c</FilePath>
+            </File>
+            <File>
+              <FileName>setup.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\setup.c</FilePath>
+            </File>
+            <File>
+              <FileName>romi2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\romi2c.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -490,6 +500,12 @@
         </targetInfos>
       </component>
       <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="RCC" Cvendor="Keil" Cversion="3.5.0" condition="STM32F1xx STDPERIPH">
+        <package name="STM32F1xx_DFP" schemaVersion="1.4.0" url="http://www.keil.com/pack/" vendor="Keil" version="2.2.0"/>
+        <targetInfos>
+          <targetInfo name="Target 1"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="SPI" Cvendor="Keil" Cversion="3.5.0" condition="STM32F1xx STDPERIPH RCC">
         <package name="STM32F1xx_DFP" schemaVersion="1.4.0" url="http://www.keil.com/pack/" vendor="Keil" version="2.2.0"/>
         <targetInfos>
           <targetInfo name="Target 1"/>
