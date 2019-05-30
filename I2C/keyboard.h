@@ -17,10 +17,10 @@ uint8_t Letter[] = {
 #define LSHIFT	0x12
 #define LCTRL		0x14
 #define F1		0x05
-#define F2 		0x06
-#define F3		0x04
-#define F4		0x0C
-#define F5		0x03
+#define F2 		0x06	// INPUT RAM
+#define F3		0x04	// PRINT INPUT TO SERIAL
+#define F4		0x0C	// PRINT INPUT TO LCD
+#define F5		0x03	//
 #define F6		0x0B
 #define NewLine 0x0A
 

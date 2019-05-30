@@ -145,10 +145,10 @@ void Inform_Select_Mode()
 	Delay(100);
   LCD_SetCurSor_XY(1, 0);
 	Delay(100);
-  LCD_Print_String("F1-inputstring");
+  LCD_Print_String("F1:INPUT-F2:SHOW");
   LCD_SetCurSor_XY(0, 0);
 	Delay(100);
-  LCD_Print_String("F2-inputchar");
+  LCD_Print_String("F3:SET-F4:CHANGE");
 }
 
 

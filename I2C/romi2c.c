@@ -103,7 +103,7 @@ void I2C_EE_Init(void)
  * ??  :?
  * ??  :????
  */
-void I2C_EE_BufferWrite(u8* pBuffer, u8 WriteAddr, u16 NumByteToWrite)
+void I2C_EE_BufferWrite(uint8_t* pBuffer, uint8_t WriteAddr, uint16_t NumByteToWrite)
 {
   u8 NumOfPage = 0, NumOfSingle = 0, Addr = 0, count = 0;
 
@@ -188,7 +188,7 @@ void I2C_EE_BufferWrite(u8* pBuffer, u8 WriteAddr, u16 NumByteToWrite)
  * ??  :?
  * ??  :????
  */
-void I2C_EE_ByteWrite(u8* pBuffer, u8 WriteAddr)
+void I2C_EE_ByteWrite(uint8_t* pBuffer, uint8_t WriteAddr)
 {
   /* Send STRAT condition */
   I2C_GenerateSTART(I2C_Channel, ENABLE);
@@ -229,7 +229,7 @@ void I2C_EE_ByteWrite(u8* pBuffer, u8 WriteAddr)
  * ??  :?
  * ??  :????
  */
-void I2C_EE_PageWrite(u8* pBuffer, u8 WriteAddr, u8 NumByteToWrite)
+void I2C_EE_PageWrite(uint8_t* pBuffer, uint8_t WriteAddr, uint8_t NumByteToWrite)
 {
     while(I2C_GetFlagStatus(I2C_Channel, I2C_FLAG_BUSY)); // Added by Najoua 27/08/2008
     
@@ -279,7 +279,7 @@ void I2C_EE_PageWrite(u8* pBuffer, u8 WriteAddr, u8 NumByteToWrite)
  * ??  :?
  * ??  :????
  */
-void I2C_EE_BufferRead(u8* pBuffer, u8 ReadAddr, u16 NumByteToRead)
+void I2C_EE_BufferRead(uint8_t* pBuffer, uint8_t ReadAddr, uint16_t NumByteToRead)
 {  
   //*((u8 *)0x4001080c) |=0x80; 
     while(I2C_GetFlagStatus(I2C_Channel, I2C_FLAG_BUSY)); // Added by Najoua 27/08/2008

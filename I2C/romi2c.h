@@ -7,8 +7,8 @@
 //#define EEPROM_Block3_ADDRESS 0xA6 /* E2 = 0 */
 
 void I2C_EE_Init(void);
-void I2C_EE_BufferWrite(u8* pBuffer, u8 WriteAddr, u16 NumByteToWrite);
-void I2C_EE_ByteWrite(u8* pBuffer, u8 WriteAddr);
-void I2C_EE_PageWrite(u8* pBuffer, u8 WriteAddr, u8 NumByteToWrite);
-void I2C_EE_BufferRead(u8* pBuffer, u8 ReadAddr, u16 NumByteToRead);
+void I2C_EE_BufferWrite(uint8_t* pBuffer, uint8_t WriteAddr, uint16_t NumByteToWrite);
+void I2C_EE_ByteWrite(uint8_t* pBuffer, uint8_t WriteAddr);
+void I2C_EE_PageWrite(uint8_t* pBuffer, uint8_t WriteAddr, uint8_t NumByteToWrite);
+void I2C_EE_BufferRead(uint8_t* pBuffer, uint8_t ReadAddr, uint16_t NumByteToRead);
 void I2C_EE_WaitEepromStandbyState(void);
