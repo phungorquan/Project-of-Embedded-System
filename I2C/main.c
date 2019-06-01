@@ -34,7 +34,7 @@ void EmptyString(void) {
 
 bool Check(uint8_t Mode) {
   char Buffer[5];
-  unsigned int k = 0;
+  unsigned int k = 0;	// Input char counter 
   uint8_t _Userinput;
   char tmp;
 
@@ -44,40 +44,40 @@ bool Check(uint8_t Mode) {
     {
       USART_ClearITPendingBit(USART2, USART_IT_RXNE);
       _Userinput = USART_ReceiveData(USART2);
-      if (_Userinput == F5)
+      if (_Userinput == F5)	// If user press F5 , pass this step
         return true;
       tmp = Letter[_Userinput];
 
-      if (k < 5) {
-        if (_Userinput != ENTER) {
+      if (k < 5) {	// If user input < 5characters (mean not enough ID)
+        if (_Userinput != ENTER) {	// If user press any key different from ENTER
           Buffer[k] = tmp;
           k++;
-          LCD_Print(tmp);
+          LCD_Print(tmp);	// Print that info to LCD
         }
       }
     }
   }
 
-  Buffer[k] = '\0';
+  Buffer[k] = '\0';	// Add end string to compare String
 
-  if (Mode == _ID) {
+  if (Mode == _ID) {	// If is checking ID
     char BuffromCheck[5];
-    unsigned int indexromcheckid = 0;
-    I2C_EE_BufferRead(I2c_Buf_Read, EEP_Firstpage, 10);
-    for (indexromcheckid = 0; indexromcheckid < 5; indexromcheckid++)
-      BuffromCheck[indexromcheckid] = I2c_Buf_Read[indexromcheckid];
+    unsigned int indexromcheckid = 0;	
+    I2C_EE_BufferRead(I2c_Buf_Read, EEP_Firstpage, 10); // Read ID and Pass from EEPROM (first 10 position)
+    for (indexromcheckid = 0; indexromcheckid < 5; indexromcheckid++)	// first 5 is ID
+      BuffromCheck[indexromcheckid] = I2c_Buf_Read[indexromcheckid]; // Get it out
 
-    if (strcmp(BuffromCheck, Buffer) == 0)
+    if (strcmp(BuffromCheck, Buffer) == 0)	// If Check is OK , return tre
       return true;
 
-  } else if (Mode == _Pass) {
+  } else if (Mode == _Pass) {// If is checking ID
     char BuffromCheck[5];
     unsigned int indexromcheckid = 5;
-    I2C_EE_BufferRead(I2c_Buf_Read, EEP_Firstpage, 10);
-    for (indexromcheckid = 5; indexromcheckid < 10; indexromcheckid++)
-      BuffromCheck[indexromcheckid - 5] = I2c_Buf_Read[indexromcheckid];
+    I2C_EE_BufferRead(I2c_Buf_Read, EEP_Firstpage, 10); // Read ID and Pass from EEPROM (first 10 position)
+    for (indexromcheckid = 5; indexromcheckid < 10; indexromcheckid++) // last 5 is ID
+      BuffromCheck[indexromcheckid - 5] = I2c_Buf_Read[indexromcheckid];// Get it out
 
-    if (strcmp(BuffromCheck, Buffer) == 0)
+    if (strcmp(BuffromCheck, Buffer) == 0)// If Check is OK , return tre
       return true;
   }
 
@@ -148,13 +148,13 @@ int main() {
   Delay(7000);
   //_SendString("START\r\n");
 
-  do {
+  do {	// After INIT all of stuff , move to input ID and PASS 
     LCD_Clear();
     Delay(30);
     LCD_SetCurSor_XY(1, 0);
     Delay(30);
     LCD_Print_String("ID:");
-  } while (Check(_ID) == false);
+  } while (Check(_ID) == false);	// CHECK ID 
 
   do {
     LCD_SetCurSor_XY(0, 0);
@@ -164,22 +164,22 @@ int main() {
     Delay(30);
     LCD_Print_String("     ");
     LCD_SetCurSor_XY(0, 5);
-  } while (Check(_Pass) == false);
+  } while (Check(_Pass) == false); // CHECK PASS
 
-  Inform_Select_Mode();
-  NVIC_Configuration();
+  Inform_Select_Mode(); // After access , the LCD will inform Select Mode 
+  NVIC_Configuration();	
 
   while (1) {
 
-    if (_readdata == F1) {
+    if (_readdata == F1) {	// IF press F1
       MODEUPDATE = true;
 
       Delay(10000);
       LCD_Clear();
 
-      _SendByte(NewLine);
-      _SendString("This is mode input Character : ");
-      _SendByte(NewLine);
+      //_SendByte(NewLine);
+     // _SendString("This is mode input Character : ");
+      //_SendByte(NewLine);
 
       //}
       Mode_String = false;
@@ -188,7 +188,7 @@ int main() {
       count = 0;
       _readdata = '0';
 
-    } else if (_readdata == ESC) {
+    } else if (_readdata == ESC) { // If press ESC
       Mode_Char = false;
       EmptyString();
       Inform_Select_Mode();
@@ -237,7 +237,8 @@ int main() {
     //      _readdata = '0';
     //			}
     else if (_readdata == F2) {
-
+			
+			// Algorithm to Print out line by line
       char dataread1[16];
       char dataread2[16];
       uint8_t a = Str_Len_OfString % 16;
@@ -299,19 +300,21 @@ int main() {
     } else if (_readdata == F3) {
 
       unsigned int indexrom = 0;
-      _SendByte(NewLine);
+      //_SendByte(NewLine);
+			// INPUT defalut ID 
       for (indexrom = 0; indexrom <= 4; indexrom++)
         I2c_Buf_Write[indexrom] = 65 + indexrom;
-
+			
+			// INPUT defalut ID & PASS
       for (indexrom = 5; indexrom <= 9; indexrom++)
         I2c_Buf_Write[indexrom] = 44 + indexrom;
 
       I2C_EE_BufferWrite(I2c_Buf_Write, EEP_Firstpage, 10);
 
-      I2C_EE_BufferRead(I2c_Buf_Read, EEP_Firstpage, 10);
+      //I2C_EE_BufferRead(I2c_Buf_Read, EEP_Firstpage, 10);
 
       _readdata = '0';
-    } else if (_readdata == F4) {
+    } else if (_readdata == F4) {	// Change ID AND PASS , the PASS will auto display in INTERRUPT UART when input enough ID character
       FlagDoneUpdate = true;
       MODEUPDATE = false;
       Mode_Char = false;
@@ -322,7 +325,7 @@ int main() {
       Delay(30);
       LCD_Print_String("ID:");
       _readdata = '0';
-    } else if (_readdata == ENTER && MODEUPDATE == false && FlagDoneUpdate == false) {
+    } else if (_readdata == ENTER && MODEUPDATE == false && FlagDoneUpdate == false) { // If press enter when using Change account mode
       krom = 0;
       Delay(5000);
       I2C_EE_BufferWrite(I2c_Buf_Write, EEP_Firstpage, 10);
@@ -345,6 +348,7 @@ void USART2_IRQHandler(void) {
     USART_ClearITPendingBit(USART2, USART_IT_RXNE);
     _readdata = USART_ReceiveData(USART2);
 
+		// Input for F1 mode (input String mode)
     if (Mode_Char == true && _readdata != '0') {
       if (count == 16) {
 
@@ -365,7 +369,7 @@ void USART2_IRQHandler(void) {
         }
       }
 
-    } else if (MODEUPDATE == false && _readdata != '0' && FlagDoneUpdate == true) {
+    } else if (MODEUPDATE == false && _readdata != '0' && FlagDoneUpdate == true) { //Change account mode
       if (_readdata != ENTER && _readdata != '0') {
         if (_readdata != ESC) {
           if (krom != 10) {

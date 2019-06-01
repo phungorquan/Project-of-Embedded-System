@@ -16,11 +16,10 @@ uint8_t Letter[] = {
 #define SPACE	0x29
 #define LSHIFT	0x12
 #define LCTRL		0x14
-#define F1		0x05
-#define F2 		0x06	// INPUT RAM
-#define F3		0x04	// PRINT INPUT TO SERIAL
-#define F4		0x0C	// PRINT INPUT TO LCD
-#define F5		0x03	//
-#define F6		0x0B
+#define F1		0x05	// INPUT RAM
+#define F2 		0x06	// PRINT INPUT TO LCD
+#define F3		0x04	// SET DEFAULT ID & PASS (ID : ABCDE , PASS : 12345)
+#define F4		0x0C	// CHANGE ID & PASSWORD
+#define F5		0x03	// ACCESS DIRECTLY ID , PASS 
 #define NewLine 0x0A
 
