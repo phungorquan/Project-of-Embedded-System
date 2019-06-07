@@ -1,7 +1,7 @@
 # Project-of-Embedded-System-Course
 
-This project about store data from user input to Ram or Rom and then display on LCD
-We build the system above with STM32F103C8T6 , our system have: 
++ This project about store data from user input to Ram or Rom and then display on LCD
++ We build the system above with STM32F103C8T6 , our system have: 
 - LCD
 - Keyboard
 - External Ram 
