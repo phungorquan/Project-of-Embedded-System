@@ -15,3 +15,5 @@ We build the system above with STM32F103C8T6 , our system have:
 - ROM (24C02)     : Optimal code from this tutorial https://github.com/yhyuan/STM32-Examples/tree/master/16-M3-IIC%20(EEPROM-24C02)/USER
 - LCD-I2C         : Optimal code from this tutorial http://laptrinharmst.blogspot.com/2018/04/bai-12-i2c-voi-stm32f1.html
 - Module Keyboard : https://github.com/phungorquan/Module-Keyboard-PS2-USB
+
+# IDE: KEIL ARM
