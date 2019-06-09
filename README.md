@@ -9,6 +9,9 @@
 - Extend devices ,...
 
 # Video demo : https://youtu.be/Z6_3QKcfLMI
+# Algorithm Diagram : 
+
+![](Diagram.png)
 
 # References
 - RAM (24LC1024)  : Optimal code from this tutorial https://www.youtube.com/watch?v=eIP_w5uizNw&t=25s
